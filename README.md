@@ -1,15 +1,18 @@
 # ts-todo-practice
 
-This repo is a command-line to-do app with typescript from Inflean online course.
+This repo is a command-line to-do app with typescript from Inflean which is learning programming course in Korea.
 
 ## Tech Stacks
 - Typescript
+- Node.js
 - Chalk
 - Nodemon
-- Node.js
 
-### install package
-`npm install`
+## `npm install`
+Installs packages in the app.
 
-### run app
-`npm start`
+## `npm start`
+Runs the app in the develope mode.
+
+## `npm run build`
+Buidls the app for production mode to the `dist` folder.

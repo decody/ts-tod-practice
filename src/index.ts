@@ -1,14 +1,15 @@
 import { waitForInput } from "./Input";
-import { Priority, AppState } from "./type";
+import { Priority, AppState, Action } from "./type";
 import Todo from "./Todo";
-import { Command, CommandPrintTodos } from "./Commond";
+import { Command, CommandPrintTodos, CommandNewTodo } from "./Commond";
 
 const commands: Command[] = [
-  new CommandPrintTodos()
+  new CommandPrintTodos(),
+  new CommandNewTodo(),
 ];
 
 async function main() {
-  const state: AppState = {
+  let state: AppState = {
     todos: [
       new Todo("test1", Priority.High),
       new Todo("test2", Priority.Medium),
@@ -25,9 +26,21 @@ async function main() {
     console.clear();
     const command = commands.find(item => item.key === key);
     if (command) {
-      await command.run(state);
+      const action = await command.run(state);
+      if (action) {
+        state = getNextState(state, action);
+      }
     }
   }
 }
-
 main();
+
+function getNextState(state: AppState, action: Action): AppState {
+  switch (action.type) {
+    case "newTodo":
+      return {
+        ...state,
+        todos: [...state.todos, new Todo(action.title, action.priority)],
+      }
+  }
+}
