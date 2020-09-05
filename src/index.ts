@@ -1,11 +1,17 @@
 import { waitForInput } from "./Input";
 import { Priority, AppState, Action } from "./type";
 import Todo from "./Todo";
-import { Command, CommandPrintTodos, CommandNewTodo } from "./Commond";
+import { 
+  Command, 
+  CommandPrintTodos, 
+  CommandNewTodo, 
+  CommandDeleteTodo 
+} from "./Commond";
 
 const commands: Command[] = [
   new CommandPrintTodos(),
   new CommandNewTodo(),
+  new CommandDeleteTodo(),
 ];
 
 async function main() {
@@ -41,6 +47,11 @@ function getNextState(state: AppState, action: Action): AppState {
       return {
         ...state,
         todos: [...state.todos, new Todo(action.title, action.priority)],
-      }
+      };
+    case "deleteTodo":
+      return {
+        ...state,
+        todos: state.todos.filter(item => item.id !== action.id),
+      };
   }
 }

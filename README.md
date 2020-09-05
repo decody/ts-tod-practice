@@ -8,11 +8,19 @@ This repo is a command-line to-do app with typescript from Inflean which is lear
 - Chalk
 - Nodemon
 
-## `npm install`
+## Features
+- Show all todos
+- Add todo
+- Remove todo
+
+### `npm install`
+
 Installs packages in the app.
 
-## `npm start`
+### `npm start`
+
 Runs the app in the develope mode.
 
-## `npm run build`
+### `npm run build`
+
 Buidls the app for production mode to the `dist` folder.
